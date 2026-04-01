@@ -201,9 +201,8 @@ function pay(plan,price){
 }
 
 function closePopup(){
-  document.getElementById("popup").style.display="none";
+  location.reload();
 }
-
 function openRules(){
   document.getElementById("rulesPopup").style.display="flex";
 }
@@ -213,11 +212,27 @@ function closeRules(){
 }
 
 function openUPI(){
-  let upi="upi://pay?pa=8826210428@fam&pn=Daksh%20Sharma&am="+selectedPrice+"&cu=INR&tn="+encodeURIComponent(selectedPlan);
+  document.getElementById("popup").innerHTML = `
+  <div class="popup-box">
+    <h3>Bank Payment Details</h3>
 
-  window.location.href = upi;
+    <p><b>Plan:</b> ${selectedPlan}</p>
+    <p><b>Amount:</b> ₹${selectedPrice}</p>
+
+    <hr style="margin:10px 0;border-color:#333;">
+
+    <p style="text-align:left;font-size:14px;color:#ccc;line-height:1.8;">
+    👋 Hello! Here are my account details:<br><br>
+    1️⃣ A/c No.: 6851006987<br>
+    2️⃣ IFSC Code: KKBK0004677<br>
+    3️⃣ UPI ID: 8882785084@kotak811
+    </p>
+
+    <button onclick="openWhatsApp()">✅ I have Paid</button>
+    <button onclick="closePopup()">❌ Close</button>
+  </div>
+  `;
 }
-
 // ✅ Yeh alag hona chahiye (IMPORTANT)
 function openWhatsApp(){
   closePopup(); // popup band hoga
